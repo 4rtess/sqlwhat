@@ -50,9 +50,11 @@ def check_row(state, index, missing_msg=None, expand_msg=None):
     """
 
     if missing_msg is None:
-        missing_msg = "The system wants to verify row {{index + 1}} of your query result, but couldn't find it. Have another look."
-    if expand_msg is None:
-        expand_msg = "Have another look at row {{index + 1}} in your query result. "
+        #missing_msg = "The system wants to verify row {{index + 1}} of your query result, but couldn't find it. Have another look."
+        missing_msg = "Не удается найти строку {{index + 1}} в результате вашего запроса. Посмотрите еще раз."
+        if expand_msg is None:
+        #expand_msg = "Have another look at row {{index + 1}} in your query result. "
+        expand_msg = "Посмотрите еще раз на строку {{index + 1}} в результате вашего запроса. "
     msg_kwargs = {"index": index}
 
     # check that query returned something
@@ -66,9 +68,12 @@ def check_row(state, index, missing_msg=None, expand_msg=None):
 
     if index >= n_sol:
         raise BaseException(
-            "There are only {} rows in the solution query result, and you're trying to fetch the row at index {}".format(
-                n_sol, index
-            )
+            #"There are only {} rows in the solution query result, and you're trying to fetch the row at index {}".format(
+            #    n_sol, index
+            #)
+            "В правильном запросе {} строк, а вы пытаетесь получить строку с индексом {}".format(
+                            n_sol, index
+                        )
         )
 
     if index >= n_stu:
@@ -115,10 +120,12 @@ def check_column(state, name, missing_msg=None, expand_msg=None):
     """
 
     if missing_msg is None:
-        missing_msg = "We expected to find a column named `{{name}}` in the result of your query, but couldn't."
+        #missing_msg = "We expected to find a column named `{{name}}` in the result of your query, but couldn't."
+        missing_msg = "Ожидалось увидеть колонку с названием `{{name}}` в результате вашего запроса."
     if expand_msg is None:
-        expand_msg = "Have another look at your query result. "
-    msg_kwargs = {"name": name}
+        #expand_msg = "Have another look at your query result. "
+        expand_msg = "Посмотрите на результат вашего запроса еще раз."
+        msg_kwargs = {"name": name}
 
     # check that query returned something
     has_result(state)
@@ -182,10 +189,10 @@ def check_all_columns(state, allow_extra=True, too_many_cols_msg=None, expand_ms
 
     if too_many_cols_msg is None:
         too_many_cols_msg = (
-            "Your query result contains the column {{col}} but shouldn't."
+             "Результат вашего запроса содержит колонку {{col}}, хотя не должен."
         )
     if expand_msg is None:
-        expand_msg = "Have another look at your query result. "
+        expand_msg = "Посмотрите еще раз на результат вашего запроса. "
 
     child_stu_result = {}
     child_sol_result = {}
@@ -200,7 +207,7 @@ def check_all_columns(state, allow_extra=True, too_many_cols_msg=None, expand_ms
     )
     if not allow_extra and len(cols_not_in_sol) > 0:
         _msg = state.build_message(
-            "Your query result contains the column `{{col}}` but shouldn't.",
+            "Результат вашего запроса содержит колонку `{{col}}`, хотя не должен.",
             fmt_kwargs={"col": cols_not_in_sol[0]},
         )
         state.report(_msg)
@@ -288,10 +295,11 @@ def check_query(state, query, error_msg=None, expand_msg=None):
     """
 
     if error_msg is None:
-        error_msg = "Running `{{query}}` after your submission generated an error."
+        #error_msg = "Running `{{query}}` after your submission generated an error."
+        error_msg = "При запуске запроса: `{{query}}` появилась ошибка."
     if expand_msg is None:
-        expand_msg = "The autograder verified the result of running `{{query}}` against the database. "
-
+        #expand_msg = "The autograder verified the result of running `{{query}}` against the database. "
+        expand_msg = "Проверен результат запроса `{{query}}` в базе данных. "
     msg_kwargs = {"query": query}
 
     # before redoing the query,

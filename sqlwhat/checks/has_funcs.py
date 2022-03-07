@@ -46,7 +46,9 @@ def has_result(state, incorrect_msg="Your query did not return a result."):
 
 def has_nrows(
     state,
-    incorrect_msg="Your query returned a table with {{n_stu}} row{{'s' if n_stu > 1 else ''}} while it should return a table with {{n_sol}} row{{'s' if n_sol > 1 else ''}}.",
+    #incorrect_msg="Your query returned a table with {{n_stu}} row{{'s' if n_stu > 1 else ''}} while it should return a table with {{n_sol}} row{{'s' if n_sol > 1 else ''}}.",
+    incorrect_msg="Ваш запрос вернул табицу с {{n_stu}}, строка: {{'s' if n_stu > 1 else ''}}, когда должно было вернуть таблицу с {{n_sol}}, строка:{{'s' if n_sol > 1 else ''}}.",
+
 ):
     """Test whether the student and solution query results have equal numbers of rows.
 
@@ -73,7 +75,8 @@ def has_nrows(
 
 def has_ncols(
     state,
-    incorrect_msg="Your query returned a table with {{n_stu}} column{{'s' if n_stu > 1 else ''}} while it should return a table with {{n_sol}} column{{'s' if n_sol > 1 else ''}}.",
+    #incorrect_msg="Your query returned a table with {{n_stu}} column{{'s' if n_stu > 1 else ''}} while it should return a table with {{n_sol}} column{{'s' if n_sol > 1 else ''}}.",
+    incorrect_msg="Ваш запрос вернул таблицу с {{n_stu}}, колонка: {{'s' if n_stu > 1 else ''}}, когда должно было вернуть таблицу с  {{n_sol}}, колонка:{{'s' if n_sol > 1 else ''}}.",
 ):
     """Test whether the student and solution query results have equal numbers of columns.
 
@@ -161,7 +164,8 @@ def has_equal_value(state, ordered=False, ndigits=None, incorrect_msg=None):
         )
 
     if incorrect_msg is None:
-        incorrect_msg = "Column `{{col}}` seems to be incorrect.{{' Make sure you arranged the rows correctly.' if ordered else ''}}"
+        #incorrect_msg = "Column `{{col}}` seems to be incorrect.{{' Make sure you arranged the rows correctly.' if ordered else ''}}"
+        incorrect_msg = "Колонна `{{col}}` кажется неправиьной.{{' Вы точно расположили строки в правильном порядке?.' if ordered else ''}}"
 
     # First of all, check if number of rows correspond
     has_nrows(state)
