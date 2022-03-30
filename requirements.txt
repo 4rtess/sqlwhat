@@ -1,5 +1,5 @@
 # pkg deps
-tcs_protowhat~=1.13.0
+tcs-protowhat==2.1.4
 antlr-plsql~=0.9.1
 antlr-tsql~=0.12.6
 

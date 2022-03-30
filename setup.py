@@ -1,12 +1,10 @@
-#!/usr/bin/env python
-
 import re
 import ast
 from os import path
 from setuptools import setup
 
-PACKAGE_NAME = "sqlwhat"
-REQUIREMENT_NAMES = ["protowhat", "antlr-plsql", "antlr-tsql"]
+PACKAGE_NAME = "tcs-sqlWhat"
+REQUIREMENT_NAMES = ["tcs-protowhat", "antlr-plsql", "antlr-tsql"]
 
 HERE = path.abspath(path.dirname(__file__))
 VERSION_FILE = path.join(HERE, PACKAGE_NAME, "__init__.py")
@@ -25,7 +23,6 @@ with open(REQUIREMENTS_FILE, encoding="utf-8") as fp:
     ]
 with open(README_FILE, encoding="utf-8") as fp:
     README = fp.read()
-
 setup(
     name=PACKAGE_NAME,
     version=VERSION,
@@ -38,7 +35,7 @@ setup(
     author_email="michael@datacamp.com",
     maintainer="Jeroen Hermans",
     maintainer_email="content-engineering@datacamp.com",
-    url="https://github.com/datacamp/sqlwhat",
+    url="https://github.com/4rtess/sqlwhat",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Affero General Public License v3",
